@@ -4,6 +4,27 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=default;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Sensor A&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;Bus-managed&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="100" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=default;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Sensor A&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;Bus-managed&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=default;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Sensor A&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;Bus-managed&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="600" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#6A00FF,#4D1F65);fontColor=#ffffff;strokeColor=#3700CC;" value="&lt;div&gt;&lt;span style=&quot;color: rgb(255, 26, 152);&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Fog 1&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(106, 150, 255), rgb(208, 255, 205));&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;OpenNebula &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;VM&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;K8s worker&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="110" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#6A00FF,#4D1F65);fontColor=#ffffff;strokeColor=#3700CC;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Fog 1&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;OpenNebula VM&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;K8s worker&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="330" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#6A00FF,#4D1F65);fontColor=#ffffff;strokeColor=#3700CC;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Fog 1&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;OpenNebula VM&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;K8s worker&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="590" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Nj950ElIPJNTQFLo2fWw-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#6A00FF,#4D1F65);fontColor=#ffffff;strokeColor=#3700CC;" value="&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot; face=&quot;Helvetica&quot;&gt;Fog 1&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;OpenNebula VM&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(208, 255, 205));&quot;&gt;K8s worker&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="160" x="110" y="600" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
