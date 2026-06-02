@@ -6,5 +6,6 @@
 #indexPage(tableList: false)
 
 #docBody[
-  = Abstract
+  #include "chapters/abstract.typ"
+  #include "chapters/architecture.typ"
 ]

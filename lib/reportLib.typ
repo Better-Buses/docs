@@ -69,7 +69,7 @@
     text(size: 1.2em)[*#it*]
   }
 
-  outline(depth: 4, title: text(size: 2em)[#v(0em) Index #v(0.5em)], indent: 1em)
+  outline(depth: 3, title: text(size: 2em)[#v(0em) Index #v(0.5em)], indent: 1em)
 
   if (imageList == true) {
     text(size: 2em)[#v(0.5em) *Images* #v(-0.5em)]
@@ -101,13 +101,12 @@
 
   show heading.where(level: 1): h => {
     set text(size: 1.5em)
-    pagebreak()
     h
-    v(1em)
+    v(0.2em)
   }
 
   set page(
-    margin: auto,
+    margin: (x: 50pt, y: auto),
     header: [
 
       #grid(
