@@ -2,8 +2,8 @@
 
 > Cloud & Fog Computing project — University of Trento  
 > IaaS: OpenNebula · PaaS: Kubernetes (K3s) · Security: Network Policy + Falco
-> Authors : Soranzo Andrea,Precoma Andrea
-> 
+> Authors : Soranzo Andrea · Precoma Andrea
+
 ## Overview
 
 Simulated environmental sensors (temperature, smoke) send data via MQTT to edge fog nodes. Each fog node preprocesses the data locally and forwards aggregates to a central cloud cluster. Chaos Mesh injects node failures to test system resilience: when a fog node goes down, Kubernetes reschedules its workloads automatically. Optionally, a Python script calls the OpenNebula API to reprovision the failed VM and rejoin it to the cluster.
