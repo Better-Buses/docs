@@ -1,11 +1,12 @@
 #import "lib/common.typ": course, prjName
-#import "lib/reportLib.typ": docBody, firstPage, indexPage
+#import "lib/reportLib.typ": config, firstPage, tableOfContentPage
+
+#show: config.with()
 
 #firstPage(prjName)
 
-#indexPage(tableList: false)
+#tableOfContentPage(tableList: false)
 
-#docBody[
-  #include "chapters/abstract.typ"
-  #include "chapters/architecture.typ"
-]
+
+#include "chapters/abstract.typ"
+#include "chapters/architecture.typ"

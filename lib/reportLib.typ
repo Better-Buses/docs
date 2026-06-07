@@ -55,11 +55,11 @@
   )
 }
 
-#let indexPage(imageList: true, tableList: true) = {
+#let tableOfContentPage(imageList: true, tableList: true) = {
   set page(
     margin: auto,
     footer: [
-      #align(center)[#context [#counter(page).display("1 of 1", both: true)]] \
+      #align(center)[#context [#counter(page).display("i")]] \
       #place(dx: -71pt, dy: -2pt)[#rect(height: 50%, width: 135%, stroke: none, fill: mainColor)]
     ],
   )
@@ -68,31 +68,34 @@
     v(12pt, weak: true)
     text(size: 1.2em)[*#it*]
   }
-
-  outline(depth: 3, title: text(size: 2em)[#v(0em) Index #v(0.5em)], indent: 1em)
+  outline(
+    title: text(size: 1.2em)[#v(0.2em) Table of content #v(0.5em)],
+  )
 
   if (imageList == true) {
-    text(size: 2em)[#v(0.5em) *Images* #v(-0.5em)]
+    pagebreak()
 
     show outline: set text(weight: "thin")
     outline(
-      title: [],
+      title: text(size: 1.2em)[#v(0.2em) Images #v(0.5em)],
       target: figure.where(kind: image),
     )
   }
 
   if (tableList == true) {
-    text(size: 2em)[#v(0.5em) *Tables* #v(-0.5em)]
+    pagebreak()
 
     show outline: set text(weight: "thin")
     outline(
-      title: [],
+      title: text(size: 1.2em)[#v(0.2em) Tables #v(0.5em)],
       target: figure.where(kind: table),
     )
   }
 }
 
-#let docBody(body) = {
+#let config(
+  body,
+) = {
   show figure: set block(breakable: true)
   show link: it => underline(text(fill: linkColor)[#it])
   show ref: rf => underline(text(fill: mainColor)[#rf])
@@ -104,6 +107,9 @@
     h
     v(0.2em)
   }
+  show heading.where(level: 2): set text(size: 1.4em)
+  show heading.where(level: 3): set text(size: 1.25em)
+  show heading.where(level: 4): set text(size: 1.15em)
 
   set page(
     margin: (x: 50pt, y: auto),
