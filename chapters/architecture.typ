@@ -1,6 +1,6 @@
 = Architecture
-For realizing this we decided to use a fog architecture where the main task of the sensors are just to collect all the relevant data and than sent them to a local and centralized server that does all the computing and calculations that after that busm be sent to the cloud that comprehand all the data and providea a monitoring interface like some grahs and predictions in order to make all info humanly readable.
 To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability.
+The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs and predictions in order to make all information humanly readable.
 
 #figure(image("../assets/png/arch.png", width: 79%), caption: [Fog architecture])
 == Layers
@@ -42,3 +42,8 @@ The final layer of defense is managed at the hypervisor level through OpenNebula
 - *Ingress/Egress Filtering*: We define security groups that strictly control which IP addresses and ports are accessible from outside the virtual network (e.g., allowing only HTTPS traffic to the Grafana VM).
 - *Node-Level Isolation*: By restricting communication at the VM level, we ensure that even if the Kubernetes networking is bypassed, the underlying virtual nodes remain protected from unauthorized external probes or inter-node interference.
 
+== Labels
+To optimize sensor management and enforce strict scheduling rules within our Kubernetes cluster, we implemented node selector policies by assigning targeted labels to our nodes.
+We defined two primary labels based on the workloads' operational responsibilities:
+- *Bus_Sensors*: Assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
+- *Stop_Sensors*: Assigned to nodes responsible for monitoring passenger-facing metrics. These workloads gather real-time data regarding bus arrivals and delays at individual stops, calculating exact times to enhance the public transit experience.
