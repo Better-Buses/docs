@@ -1,5 +1,5 @@
 #let course = "Fog and Cloud Computing"
-#let prjName = "Foggy-Sensors"
+#let prjName = "Better Buses"
 #let mainColor = rgb("#0067b6")
 #let linkColor = blue
 #let university = "University of Trento"

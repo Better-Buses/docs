@@ -71,10 +71,10 @@ The final layer of defense is managed at the hypervisor level through OpenNebula
 
 - *Node-Level Isolation* - by restricting communication at the VM level, we ensure that even if the Kubernetes networking is bypassed, the underlying virtual nodes remain protected from unauthorized external probes or inter-node interference.
 
-== Labels
+// == Labels
 
-To optimize sensor management and enforce strict scheduling rules within our Kubernetes cluster, we implement node selector policies by assigning targeted labels to our nodes. We defined two primary labels based on the workloads' operational responsibilities:
+// To optimize sensor management and enforce strict scheduling rules within our Kubernetes cluster, we implement node selector policies by assigning targeted labels to our nodes. We defined two primary labels based on the workloads' operational responsibilities:
 
-- *Bus_Sensors* - assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
+// - *Bus_Sensors* - assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
 
-- *Stop_Sensors* - assigned to nodes responsible for monitoring passenger-facing metrics. These workloads gather real-time data regarding bus arrivals and delays at individual stops, calculating exact times to enhance the public transit experience.
+// - *Stop_Sensors* - assigned to nodes responsible for monitoring passenger-facing metrics. These workloads gather real-time data regarding bus arrivals and delays at individual stops, calculating exact times to enhance the public transit experience.
