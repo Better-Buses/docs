@@ -24,13 +24,13 @@
         #text(weight: "bold", size: 3em)[#course]
       ]
 
-      #align(center + horizon)[
-        #text(size: 3em, weight: "bold")[#title]
-        #v(-1em)
-        #text(weight: "bold", size: 2em)[Report]
-        #v(10em)
-      ]
-
+      // #align(center + horizon)[
+      //   #text(size: 3em, weight: "bold")[#title]
+      //   #v(-1em)
+      //   #text(weight: "bold", size: 2em)[Report]
+      //   #v(10em)
+      // ]
+      #align(center + horizon)[#v(-15em) #text(size: 3em, weight: "bold")[#title] #v(1em)]
 
       #table(
         stroke: none,
