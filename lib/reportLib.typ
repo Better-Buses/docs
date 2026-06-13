@@ -100,6 +100,7 @@
   show link: it => underline(text(fill: linkColor)[#it])
   show ref: rf => underline(text(fill: mainColor)[#rf])
 
+  counter(page).update(1)
   set heading(numbering: "1.")
 
   show heading.where(level: 1): h => {
