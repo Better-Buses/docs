@@ -1,11 +1,15 @@
 = Architecture
 
-To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs and predictions in order to make all information humanly readable.
-
-#figure(
-  image("../assets/png/arch.png", width: 75%),
-  caption: [System architecture],
+#grid(
+  columns: (1fr, 1.3fr),
+  column-gutter: 2em,
+  [To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.],
+  figure(image("../assets/png/arch.png", width: 100%), caption: [System architecture]),
 )
+
+// To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.
+// #figure(image("../assets/png/arch.png", width: 70%), caption: [System architecture])
+
 
 == Layers <sec-layers>
 
@@ -13,11 +17,11 @@ To realize this project, we selected a three-tier Fog Computing architecture. Th
 
 The primary role of the bus-mounted sensors is localized data ingestion. They act as lightweight edge devices responsible for continuously collecting raw transit data (such as GPS coordinates, time stamps, and speed variations) without overloading local processing capacity. Instead those mounted in the stops serves like a checkpoint station in order to track automatically at which stop and what what time a bus arrived.
 
-== Fog Layer
+=== Fog Layer
 
 Once collected, these raw data packages are transmitted to localized fog nodes and regional servers. This layer performs the initial data filtering, aggregation, and critical real-time calculations, such as computing immediate route delays. By handling processing at the fog level, we minimize data transmission costs and enable rapid localized response times.
 
-== Cloud Layer
+=== Cloud Layer
 
 Finally, the pre-processed data is forwarded to a centralized cloud platform. The cloud orchestrates large-scale data aggregation, historical analysis, and can run predictive machine learning models. Crucially, the cloud layer hosts a comprehensive monitoring interface, converting complex datasets into human-readable dashboards, real-time graphs, and predictive analytics for stakeholders and urban planners.
 
@@ -37,9 +41,9 @@ OpenNebula serves as the core cloud hypervisor and cloud management platform, or
 
 To manage our data-processing applications within the fog layer, we deploy a Kubernetes cluster directly on top of the virtualized infrastructure provisioned by OpenNebula. This container orchestration strategy separates the infrastructure into a centralized Control Plane and a resilient Worker Layer. A single, dedicated OpenNebula virtual machine is allocated to act exclusively as the Kubernetes Control Plane (Master Node). This node serves as the brain of the cluster, executing core components such as scheduler, and controller manager. The other VMs are configured as Kubernetes Worker Nodes. These nodes will host the application workloads encapsulated within Pods. These worker pods execute the microservices responsible for real-time data processing and filtering. By leveraging Kubernetes on top of our fog nodes, the system inherits robust self-healing mechanisms to ensure uninterrupted data streams and guarantees Pod replication and Workload rescheduling.
 
-=== Grafana
+=== Prometheus and Grafana
 
-To bridge the gap between complex data streams and actionable insights, we deploy Grafana on a dedicated virtual machine instance within our centralized cloud layer. This component acts as our universal data visualization and observability hub, designed to aggregate disparate metrics and present them through an intuitive, accessible, and human-readable web interface.
+To bridge the gap between complex data streams and actionable insights, we deploy the Prometheus and Grafana monitoring stack within our centralized cloud layer. Prometheus serves as the core time-series database and monitoring toolkit, actively scraping and storing metrics related to both infrastructure health (e.g., node status, resource consumption) and application-level sensor data. Grafana acts as our universal data visualization hub, directly querying Prometheus to aggregate these disparate metrics and present them through an intuitive, real-time, and human-readable web interface.
 
 === Security
 
@@ -53,15 +57,13 @@ To minimize the attack surface of our data-processing microservices, we apply st
 
 - *Minimal Image Footprint* - we utilize lightweight base images to remove unnecessary binaries, libraries, and functionalities that could be leveraged by an attacker.
 
-- *Resource Constraints* - defining CPU and memory limits to prevent "noisy neighbor" effects or Denial of Service (DoS) attacks originating from a compromised container.
-
 ==== Kubernetes Network Policies
 
 By implementing Network Policies, we enforce a "Zero Trust"-like posture between services:
 
 - *Namespace Isolation* - distinct environments are isolated into dedicated namespaces.
 
-- *Granular Traffic Control* - we define explicit "allow-lists" for Pod-to-Pod communication. This ensures that a compromised sensor-data pod cannot laterally communicate with the visualization database or the control plane unless explicitly authorized.
+- *Granular Traffic Control* - we define explicit "allow-lists" for Pod-to-Pod communication (Ingress/Egress lists). This ensures that a compromised sensor-data pod cannot laterally communicate with the visualization database or the control plane unless explicitly authorized.
 
 ==== OpenNebula Security Groups and Virtual Firewalls
 
@@ -71,10 +73,27 @@ The final layer of defense is managed at the hypervisor level through OpenNebula
 
 - *Node-Level Isolation* - by restricting communication at the VM level, we ensure that even if the Kubernetes networking is bypassed, the underlying virtual nodes remain protected from unauthorized external probes or inter-node interference.
 
-// == Labels
+==== Falco and Falcosideckick
 
-// To optimize sensor management and enforce strict scheduling rules within our Kubernetes cluster, we implement node selector policies by assigning targeted labels to our nodes. We defined two primary labels based on the workloads' operational responsibilities:
+Falco operates as an advanced behavioral activity monitor designed to detect anomalous activity. In out case it continuously observes for:
 
-// - *Bus_Sensors* - assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
+- *Remote shell opening* - detecting if a terminal is unexpectedly spawned inside a running pod, specifically the one in charge of running MQTT
 
-// - *Stop_Sensors* - assigned to nodes responsible for monitoring passenger-facing metrics. These workloads gather real-time data regarding bus arrivals and delays at individual stops, calculating exact times to enhance the public transit experience.
+- *Accessing sensitive host files* - monitoring if a container attempts to read host-level files outside its authorized scope (e.g., /etc/passwd), suggesting an attacker is trying to perform privilege escalation or gather critical system information.
+
+- *Establishing unexpected outbound connections* - ensuring that pods strictly adhere to their intended communication paths.
+
+To enhance incident response and alert management, Falcosidekick is deployed alongside Falco to seamlessly process, aggregate, and forward these real-time security alerts to our centralized monitoring channels.
+
+==== Reverse Proxy
+Nginx is deployed as a reverse proxy to secure external access to the Prometheus monitoring interface, as Prometheus lacks built-in authentication mechanisms by default.
+
+== Labels and namespaces
+
+To optimize sensor management and enforce strict scheduling rules within our Kubernetes cluster, we implement node selector policies by assigning targeted labels to our nodes. We defined two primary labels based on the workloads' operational responsibilities:
+
+- *Woerkers* - label assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
+
+- *Zone-\** - namespace assigned to nodes responsible for monitoring data that comes from a specific zone in the city (e.g zone-1). This includes both sensors
+
+- *Falco* - namespace assigned to pods that run and instance of falco and falcosideckick in order to check e trigger alerts

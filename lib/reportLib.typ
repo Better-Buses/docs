@@ -14,7 +14,6 @@
     margin: 0em,
   )
 
-
   grid(
     columns: (35%, 65%),
     [#rect(fill: mainColor, width: 100%, height: 105%)],
@@ -23,13 +22,6 @@
         #v(5em)
         #text(weight: "bold", size: 3em)[#course]
       ]
-
-      // #align(center + horizon)[
-      //   #text(size: 3em, weight: "bold")[#title]
-      //   #v(-1em)
-      //   #text(weight: "bold", size: 2em)[Report]
-      //   #v(10em)
-      // ]
       #align(center + horizon)[#v(-15em) #text(size: 3em, weight: "bold")[#title] #v(1em)]
 
       #table(
@@ -55,7 +47,7 @@
   )
 }
 
-#let tableOfContentPage(imageList: true, tableList: true) = {
+#let tableOfContentPage(imageList: false, tableList: true) = {
   set page(
     margin: auto,
     footer: [

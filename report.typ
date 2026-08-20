@@ -9,3 +9,4 @@
 
 #include "chapters/abstract.typ"
 #include "chapters/architecture.typ"
+#include "chapters/implementation.typ"
