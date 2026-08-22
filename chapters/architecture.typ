@@ -1,14 +1,8 @@
 = Architecture
 
-#grid(
-  columns: (1fr, 1.3fr),
-  column-gutter: 2em,
-  [To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.],
-  figure(image("../assets/png/arch.png", width: 100%), caption: [System architecture]),
-)
+To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.
 
-// To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.
-// #figure(image("../assets/png/arch.png", width: 70%), caption: [System architecture])
+#figure(image("../assets/png/arch.png", width: 60%), caption: [System architecture])
 
 
 == Layers <sec-layers>
@@ -39,11 +33,6 @@ OpenNebula serves as the core cloud hypervisor and cloud management platform, or
 
 - *Worker-$Z$* - the machine that hosts the K3s in client mode, namely the worker in charge of elaborating data from the sensors in the zone $Z$. In our project we define two areas, hence two workers. However, since the amount of workers may vary, their IP is, generally speaking, `172.16.100.x` where #box[$x = 3 + Z$].
 
-// This virtualized ecosystem is divided into two primary node configurations:
-
-// - *Fog layer emulation* - dedicated VMs are configured to simulate the local fog nodes like specified in @sec-layers.
-
-// - *Application & visualization layer emulation* - a separate cluster of VMs is provisioned to host the centralized cloud services. This includes the control plane for managing the fog nodes, database systems, analytics engines, and the web servers responsible for rendering the public-facing monitoring interfaces, real-time dashboards, and data visualizations.
 
 === Kubernetes
 
@@ -75,14 +64,7 @@ By implementing Network Policies, we enforce a "Zero Trust"-like posture between
 
 ==== OpenNebula Security Groups and Virtual Firewalls
 
-The final layer of defense is managed at the hypervisor level through OpenNebula security groups, specifically designed per each type of VM. *Master-SG* and *Worker-SG* are created and assigned to the Master VM and Worker VMs respectivelly, each one allowing inbound traffic from specific IP addresses through specific ports according to their role in the cluster. The default security group is left to the Sensors VM since it is used for simulation only.
-
-
-// The final layer of defense is managed at the hypervisor level through OpenNebula Network Policies. This acts as a perimeter firewall for the virtualized infrastructure:
-
-// - *Ingress/Egress filtering* - we define security groups that strictly control which IP addresses and ports are accessible from outside the virtual network (e.g. allowing only HTTPS traffic to the Grafana VM).
-
-// - *Node-level isolation* - by restricting communication at the VM level, we ensure that even if the Kubernetes networking is bypassed, the underlying virtual nodes remain protected from unauthorized external probes or inter-node interference.
+Another layer of defense is managed at the hypervisor level through OpenNebula security groups, specifically designed per each type of VM. *Master-SG* and *Worker-SG* are created and assigned to the Master VM and Worker VMs respectivelly, each one allowing inbound traffic from specific IP addresses through specific ports according to their role in the cluster. The default security group is left to the Sensors VM since it is used for simulation only.
 
 ==== Falco and Falcosideckick
 
@@ -105,6 +87,6 @@ To optimize sensor management and enforce strict scheduling rules within our Kub
 
 - *Workers* - label assigned to nodes handling traffic data analysis. These workloads track where buses experience delays or prolonged stops, correlating the data with specific times and days to calculate traffic averages.
 
-- *Zone-\** - namespace assigned to nodes responsible for monitoring data that comes from a specific zone in the city (e.g zone-1). This includes both types of sensors.
+- *Zone-$Z$* - namespace assigned to nodes responsible for monitoring data that comes from a specific zone $Z$ in the city (e.g zone-1). This includes both types of sensors.
 
 - *Falco* - namespace assigned to pods that run an instance of falco and falcosideckick in order to check e trigger alerts.
