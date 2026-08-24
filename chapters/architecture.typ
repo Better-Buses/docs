@@ -2,7 +2,7 @@
 
 To realize this project, we selected a three-tier Fog Computing architecture. This hybrid approach balances local processing with heavy cloud analytics to ensure low latency, efficient bandwidth usage, and high scalability. The main task of the sensors is just to collect all the relevant data and then send them to a local and centralized server that does all the computing and calculations. After that, the data is sent to the cloud, which comprehends all the data and provides a monitoring interface with graphs in order to make all information humanly readable.
 
-#figure(image("../assets/png/arch.png", width: 60%), caption: [System architecture])
+#figure(image("../assets/png/arch.png", width: 50%), caption: [System architecture])
 
 
 == Layers <sec-layers>
