@@ -11,4 +11,4 @@ To ensure reproducibility, the deployment avoids manual configuration in favor o
 
 - *Worker-node* (Fog Layer) - dynamically provisioned by OpenNebula as edge processors, these VMs automatically configure K3s in client mode to seamlessly join the Kubernetes cluster.
 
-- *Sensors* - dedicated VM running Python simulators to replicate urban telemetry. It models two distinct areas (each with one bus and five stops), injecting stochastic delays upon arrival at bus stops to accurately mimic real-world traffic fluctuations and passenger boarding friction.
+- *Sensors* (Edge Layer) - dedicated VM running Python simulators to replicate urban telemetry. It models two distinct areas (each with one bus and five stops), injecting stochastic delays upon arrival at bus stops to accurately mimic real-world traffic fluctuations and passenger boarding friction.

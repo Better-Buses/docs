@@ -36,7 +36,7 @@ OpenNebula serves as the core cloud hypervisor and cloud management platform, or
 
 === Kubernetes
 
-To manage our data-processing applications within the fog layer, we deploy a Kubernetes cluster directly on top of the virtualized infrastructure provisioned by OpenNebula. This container orchestration strategy separates the infrastructure into a centralized Control Plane and a resilient Worker Layer. A single, dedicated OpenNebula virtual machine is allocated to act exclusively as the Kubernetes Control Plane (Master Node). This node serves as the brain of the cluster, executing core components such as scheduler and controller manager. The other VMs are configured as Kubernetes Worker Nodes. These nodes will host the application workloads encapsulated within pods. These worker pods execute the microservices responsible for real-time data processing and filtering. By leveraging Kubernetes on top of our fog nodes, the system inherits robust self-healing mechanisms to ensure uninterrupted data streams and guarantees pod replication and workload rescheduling.
+To manage our data-processing applications within the fog layer, we deploy a Kubernetes cluster directly on top of the virtualized infrastructure provisioned by OpenNebula. This container orchestration strategy separates the infrastructure into a centralized Control Plane and a resilient Worker Layer. A single, dedicated OpenNebula virtual machine is allocated to act exclusively as the Kubernetes Control Plane (master node). This node serves as the brain of the cluster, executing core components such as scheduler and controller manager. The other VMs are configured as Kubernetes worker nodes. These nodes will host the application workloads encapsulated within pods. These worker pods execute the microservices responsible for real-time data processing and filtering. By leveraging Kubernetes on top of our fog nodes, the system inherits robust self-healing mechanisms to ensure uninterrupted data streams and guarantees pod replication and workload rescheduling.
 
 === Prometheus and Grafana
 
@@ -60,7 +60,7 @@ By implementing Network Policies, we enforce a "Zero Trust"-like posture between
 
 - *Namespace isolation* - distinct environments are isolated into dedicated namespaces.
 
-- *Granular traffic control* - we define explicit "allow-lists" for Pod-to-Pod communication (Ingress/Egress lists). This ensures that a compromised sensor-data pod cannot laterally communicate with the visualization database or the control plane unless explicitly authorized.
+- *Granular traffic control* - we define explicit "allow-lists" for pod-to-pod communication (Ingress/Egress lists). This ensures that a compromised sensor-data pod cannot laterally communicate with the visualization database or the control plane unless explicitly authorized.
 
 ==== OpenNebula Security Groups and Virtual Firewalls
 
@@ -72,7 +72,7 @@ Falco operates as an advanced behavioral activity monitor designed to detect ano
 
 - *Remote shell opening* - detecting if a terminal is unexpectedly spawned inside a running pod, specifically the one in charge of running MQTT.
 
-- *Accessing sensitive host files* - monitoring if a container attempts to read host-level files outside its authorized scope (e.g. /etc/passwd), suggesting an attacker is trying to perform privilege escalation or gather critical system information.
+- *Accessing sensitive host files* - monitoring if a container attempts to read host-level files outside its authorized scope (e.g. `/etc/passwd`), suggesting an attacker is trying to perform privilege escalation or gather critical system information.
 
 - *Establishing unexpected outbound connections* - ensuring that pods strictly adhere to their intended communication paths.
 
@@ -89,4 +89,4 @@ To optimize sensor management and enforce strict scheduling rules within our Kub
 
 - *Zone-$Z$* - namespace assigned to nodes responsible for monitoring data that comes from a specific zone $Z$ in the city (e.g zone-1). This includes both types of sensors.
 
-- *Falco* - namespace assigned to pods that run an instance of falco and falcosideckick in order to check e trigger alerts.
+- *Falco* - namespace assigned to pods that run an instance of Falco and Falcosideckick in order to check and trigger alerts.
