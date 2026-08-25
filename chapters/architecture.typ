@@ -62,7 +62,7 @@ By implementing Network Policies, we enforce a "Zero Trust"-like posture between
 
 - *Granular traffic control* - we define explicit "allow-lists" for pod-to-pod communication (Ingress/Egress lists). This ensures that a compromised sensor-data pod cannot laterally communicate with the visualization database or the control plane unless explicitly authorized.
 
-==== OpenNebula Security Groups and Virtual Firewalls
+==== OpenNebula Security Groups
 
 Another layer of defense is managed at the hypervisor level through OpenNebula security groups, specifically designed per each type of VM. *Master-SG* and *Worker-SG* are created and assigned to the Master VM and Worker VMs respectivelly, each one allowing inbound traffic from specific IP addresses through specific ports according to their role in the cluster. The default security group is left to the Sensors VM since it is used for simulation only.
 
